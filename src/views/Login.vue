@@ -36,6 +36,7 @@ export default {
       })
       .then(response => {
         if (response.status === 200) {
+          localStorage.token = response.headers['authorization'];
           this.$message({
             message: '登录成功！正在跳转到首页',
             type: 'success'
