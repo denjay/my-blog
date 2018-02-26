@@ -4,6 +4,7 @@ import Frame from '@/views/Frame'
 import Article from '@/views/Article'
 import ArticlesList from '@/views/ArticlesList'
 import Login from '@/views/Login'
+import Signin from '@/views/Signin'
 
 Vue.use(Router)
 
@@ -21,6 +22,11 @@ export default new Router({
       path: '/login',
       name: 'Login',
       component: Login,
+    },
+    {
+      path: '/signin',
+      name: 'Signin',
+      component: Signin,
     }
   ]
 })

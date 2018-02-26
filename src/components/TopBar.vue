@@ -9,7 +9,13 @@
         <el-menu-item index="2-3">笔记</el-menu-item>
     </el-submenu>
     <el-menu-item index="3"><router-link to="/about">关于本站</router-link></el-menu-item>
-    <el-menu-item index="4"><router-link to="/login">{{ status }}</router-link></el-menu-item>
+    <el-menu-item class="right" v-if="!loggedIn" index="4"><router-link to="/login">登录</router-link></el-menu-item>
+    <el-submenu class="right" v-else index="4">
+        <template slot="title">{{ username }}</template>
+        <el-menu-item index="4-1">个人中心</el-menu-item>
+        <el-menu-item index="4-2">设置</el-menu-item>
+        <el-menu-item index="4-3" @click="logOut">退出</el-menu-item>
+    </el-submenu>
     </el-menu>
   </div>
 </template>
@@ -18,7 +24,14 @@
 export default {
     data() {
         return {
-            status: localStorage.token ? '退出': '登录'
+            loggedIn: localStorage.token ? true: false,
+            username: localStorage.username
+        }
+    },
+    methods: {
+        logOut() {
+            delete localStorage.token;
+            this.loggedIn = false;
         }
     }
 }
@@ -28,10 +41,7 @@ export default {
     div {
         margin-bottom: 10px;
     }
-</style>
-
-<style>
-    li[class="el-menu-item"]:last-child {
+    .right {
         float: right;
     }
 </style>

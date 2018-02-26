@@ -1,17 +1,20 @@
 <template>
   <div class="counter" @click.self="toIndex">
-    <el-form label-position="left" label-width="60px" :model="form" class="shadow">
+    <el-form label-position="left" label-width="80px" :model="form" class="shadow">
       <el-form-item label="用户名">
-        <el-input v-model="form.username"></el-input>
+        <el-input v-model="form.username" required></el-input>
+      </el-form-item>
+      <el-form-item label="邮箱">
+        <el-input v-model="form.email"></el-input>
       </el-form-item>
       <el-form-item label="密码">
-        <el-input type="password" v-model="form.password"></el-input>
+        <el-input type="password" v-model="form.password1"></el-input>
       </el-form-item>
-      <el-form-item label="记住我" id="switch">
-        <el-switch v-model="form.remember" active-color="#13ce66" inactive-color="#ff4949"></el-switch>
+      <el-form-item label="重复密码">
+        <el-input type="password" v-model="form.password2"></el-input>
       </el-form-item>
-      <el-button type="primary" @click="login">登 录</el-button>
-      <div><router-link to="/signin">还没有帐号？立即注册>>></router-link></div>
+      <el-button type="primary" @click="signin">注 册</el-button>
+      <div><router-link to="/login">已有帐号？立即登录>>></router-link></div>
     </el-form>
   </div>
 </template>
@@ -22,31 +25,30 @@ export default {
       return {
         form: {
           username: '',
-          password: '',
-          remember: false
+          password1: '',
+          password2: '',
+          email: ''
         }
       };
     },
   methods: {
-    login() {
-      this.$axios.post("http://127.0.0.1:5000/api/1_0/login", {
+    signin() {
+      this.$axios.post("http://127.0.0.1:5000/api/1_0/register", {
         user_name: this.form.username,
-        user_password: this.form.password,
-        remember: this.form.remember
+        user_password: this.form.password1,
+        user_email: this.form.email
       })
       .then(response => {
         if (response.status === 200) {
-          localStorage.token = response.headers['authorization'];
-          localStorage.username = this.form.username;
           this.$message({
-            message: '登录成功！正在跳转到首页',
+            message: '注册成功！请登录',
             type: 'success'
           });
-          setTimeout(()=>{this.$router.push({path:"/"})}, 2000)
+          setTimeout(()=>{this.$router.push({path:"/login"})}, 2000)
         }
       })
       .catch(()=> {
-          this.$message.error('登录失败，请重试');
+          this.$message.error('注册失败，请重试');
         });
     },
   toIndex() {
