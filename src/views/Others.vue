@@ -1,15 +1,13 @@
 <template>
-  <div>
-      <b>热门文章</b><i class="el-icon-more right"></i>
+  <div class="shadow">
+      <p><b>热门文章</b><i class="el-icon-more right"></i></p>
       <hr>
       <div v-bind="articles">
-          <p v-for="article in articles" v-bind:key="article.index">
-            <a :href="'/#/articles/' + article.article_id">
-              {{ article.article_title }}
-            </a>
+            <p v-for="article in articles" v-bind:key="article.index">
+                <router-link :to="'/articles/' + article.article_id">{{ article.article_title }}</router-link>
+                <!-- <a :href="'/#/articles/' + article.article_id"></a> -->
             </p>
       </div>
-      
   </div>
 </template>
 
@@ -33,7 +31,7 @@ export default {
 <style scoped>
     div {
         max-width: 300px;
-        margin: 10px auto;
+        margin: 0px auto;
         padding: 1px 10px;
         background-color: white;
     }
@@ -47,5 +45,8 @@ export default {
     }
     .right {
         float: right;
+    }
+    hr { 
+        margin-bottom: 0px 
     }
 </style>
