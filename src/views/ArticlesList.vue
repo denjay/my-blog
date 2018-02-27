@@ -52,6 +52,7 @@ export default {
     background-color: white;
     border: 1px solid rgba(0, 255, 21, 0.24);
     padding: 5px;
+    margin: 10px;
     line-height: 30px;
     text-align: left;
     list-style: none;

@@ -43,7 +43,6 @@ export default {
   .container {
     max-width: 1200px;
     margin: auto;
-    background-color: #E9EEF3;
   }
 
   .el-header, .el-footer {

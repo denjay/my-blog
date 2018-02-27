@@ -93,3 +93,10 @@ export default {
     float: right;
   }
 </style>
+
+<style scoped>
+  html {
+    height: 100%;
+  }
+</style>
+
