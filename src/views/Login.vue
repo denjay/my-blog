@@ -1,5 +1,5 @@
 <template>
-  <div class="counter" @click.self="toIndex">
+  <div class="container" @click.self="toIndex">
     <el-form label-position="left" label-width="60px" :model="form" class="shadow">
       <el-form-item label="用户名">
         <el-input v-model="form.username"></el-input>
@@ -57,12 +57,12 @@ export default {
 </script>
 
 <style scoped>
-  .counter {
+  .container {
     height: 100%;
     background: url(../assets/background.jpg) no-repeat center top #0F2E64;
     background-size: cover; 
   }
-  .counter:before {
+  .container:before {
     content:'';
     display: table;
   }

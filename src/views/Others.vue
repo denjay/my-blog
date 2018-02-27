@@ -32,6 +32,7 @@ export default {
     div {
         max-width: 300px;
         margin: 0px auto;
+        margin-bottom: 20px;
         padding: 1px 10px;
         background-color: white;
     }
@@ -41,7 +42,7 @@ export default {
     }
     i {
         font-size: 20px;
-        margin: 5px 10px;
+        margin: 3px 10px;
     }
     .right {
         float: right;

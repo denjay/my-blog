@@ -1,19 +1,19 @@
 <template>
   <div class="counter" @click.self="toIndex">
-    <el-form label-position="left" label-width="80px" :model="form" class="shadow">
-      <el-form-item label="用户名">
-        <el-input v-model="form.username" required></el-input>
+    <el-form label-position="left" label-width="80px" status-icon :model="ruleForm" :rules="rules" ref="ruleForm" class="shadow">
+      <el-form-item label="用户名" prop="username">
+        <el-input v-model="ruleForm.username" required></el-input>
       </el-form-item>
-      <el-form-item label="邮箱">
-        <el-input v-model="form.email"></el-input>
+      <el-form-item label="邮箱" prop="email">
+        <el-input v-model="ruleForm.email"></el-input>
       </el-form-item>
-      <el-form-item label="密码">
-        <el-input type="password" v-model="form.password1"></el-input>
+      <el-form-item label="密码" prop="password1">
+        <el-input type="password" v-model="ruleForm.password1"></el-input>
       </el-form-item>
-      <el-form-item label="重复密码">
-        <el-input type="password" v-model="form.password2"></el-input>
+      <el-form-item label="确认密码" prop="password2">
+        <el-input type="password" v-model="ruleForm.password2"></el-input>
       </el-form-item>
-      <el-button type="primary" @click="signin">注 册</el-button>
+      <el-button type="primary" @click="submitForm('ruleForm')">注 册</el-button>
       <div><router-link to="/login">已有帐号？立即登录>>></router-link></div>
     </el-form>
   </div>
@@ -22,21 +22,57 @@
 <script scoped>
 export default {
   data() {
-      return {
-        form: {
-          username: '',
-          password1: '',
-          password2: '',
-          email: ''
+    var validatePass = (rule, value, callback) => {
+        if (value === '') {
+          callback(new Error('请再次输入密码'));
+        } else if (value !== this.ruleForm.password1) {
+          callback(new Error('两次输入密码不一致!'));
+        } else {
+          callback();
         }
-      };
+    };
+    return {
+      ruleForm: {
+        username: '',
+        password1: '',
+        password2: '',
+        email: ''
+      },
+      rules: {
+        username: [
+          { required: true, message: '请输入用户名', trigger: 'blur' },
+          { min: 3, max: 20, message: '长度在3到20个字符之间' ,trigger: 'blur' }
+        ],
+        password1: [
+          { required: true, message: '请输入密码', trigger: 'blur' },
+          { min: 6, max: 20, message: '长度在6到20个字符之间' ,trigger: 'blur' }
+        ],
+        password2: [
+          { validator: validatePass, trigger: 'blur' },
+        ],
+        email: [
+          { type: 'email', required:true, message: '请输入正确的邮箱地址', trigger: 'blur' }
+        ]
+
+      }
+    };
     },
   methods: {
+    submitForm(formName) {
+      this.$refs[formName].validate((valid) => {
+        if (valid) {
+          this.signin();
+        } else {
+          console.log('error submit!!');
+          return false;
+        }
+      });
+    },
     signin() {
       this.$axios.post("http://127.0.0.1:5000/api/1_0/register", {
-        user_name: this.form.username,
-        user_password: this.form.password1,
-        user_email: this.form.email
+        user_name: this.ruleForm.username,
+        user_password: this.ruleForm.password1,
+        user_email: this.ruleForm.email
       })
       .then(response => {
         if (response.status === 200) {

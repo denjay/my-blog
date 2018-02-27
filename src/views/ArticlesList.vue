@@ -5,7 +5,9 @@
       <el-main>
         <ui v-bind="articles">
           <li v-for="article in articles" v-bind:key="article.index">
-            <router-link :to="'/articles/' + article.article_id"><b>{{ article.article_title }}</b></router-link>
+            <router-link :to="'/articles/' + article.article_id">
+              <el-button type="primary" size="mini">{{ article.article_title }}</el-button>
+            </router-link>
             <br>
             {{ article.article_content }}
             <br>
@@ -52,6 +54,7 @@ export default {
     padding: 5px;
     line-height: 30px;
     text-align: left;
+    list-style: none;
   }
   li b {
     padding: 3px;

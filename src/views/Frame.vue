@@ -1,7 +1,7 @@
 <template>
   <div>
     <top-bar></top-bar>
-    <div class="content">
+    <div class="container">
       <el-row :gutter="20">
         <el-col :xs="24" :sm="16" :md="16" :lg="16" :xl="16">
           <router-view></router-view>
@@ -40,7 +40,7 @@ export default {
 </script>
 
 <style>
-  .content {
+  .container {
     max-width: 1200px;
     margin: auto;
     background-color: #E9EEF3;
