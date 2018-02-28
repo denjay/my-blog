@@ -1,15 +1,15 @@
 <template>
-  <div class="shadow">
+  <div>
     <el-container>
       <el-header><b>所有文章</b></el-header>
       <el-main>
         <ui v-bind="articles">
-          <li v-for="article in articles" v-bind:key="article.index">
+          <li class="shadow" v-for="article in articles" v-bind:key="article.index">
             <router-link :to="'/articles/' + article.article_id">
-              <el-button type="primary" size="mini">{{ article.article_title }}</el-button>
+              <el-button type="primary" size="small">{{ article.article_title }}</el-button>
             </router-link>
             <br>
-            {{ article.article_content }}
+            <p>{{ article.article_content }}</p>
             <br>
             <span><i class="el-icon-view"></i>{{ article.click }}</span>
             <span class="right"><i class="el-icon-date"></i>{{ article.article_date | date_only }}</span>
@@ -45,26 +45,49 @@ export default {
 </script>
 
 <style scoped>
-  div {
-    margin-bottom: 20px;
-  }
   li {
-    background-color: white;
-    border: 1px solid rgba(0, 255, 21, 0.24);
-    padding: 5px;
+    background-color: #71D38C;
+    border-radius: 5px;
+    padding: 10px;
     margin: 10px;
     line-height: 30px;
     text-align: left;
-    list-style: none;
   }
   li b {
     padding: 3px;
     border-bottom: 1px solid ;
   }
+  li p {
+    text-indent: 2em;
+    margin: 10px 0px;
+    min-height: 50px;
+  }
   li:hover {
-    background: rgba(0, 255, 21, 0.24);
+    background: rgb(75, 206, 112);
   }
   .right {
     float: right;
   }
 </style>
+
+<style>
+  .el-header, .el-footer {
+    border-radius: 5px;
+    margin: 0px 10px 0px 10px;
+    background-color: #B3C0D1;
+    color: #333;
+    text-align: center;
+    line-height: 60px;
+  }
+  .el-footer {
+    margin-bottom: 10px;
+  }
+
+  .el-main {
+    color: #333;
+    text-align: center;
+    line-height: 160px;
+    padding: 0px;
+  }
+</style>
+

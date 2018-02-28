@@ -39,23 +39,9 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
   .container {
     max-width: 1200px;
     margin: auto;
-  }
-
-  .el-header, .el-footer {
-    background-color: #B3C0D1;
-    color: #333;
-    text-align: center;
-    line-height: 60px;
-  }
-
-  .el-main {
-    color: #333;
-    text-align: center;
-    line-height: 160px;
-    padding: 0px;
   }
 </style>
