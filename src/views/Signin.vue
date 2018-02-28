@@ -96,9 +96,9 @@ export default {
 
 <style scoped>
   .counter {
-    height: 100%;
-    background: url(../assets/background.jpg) no-repeat center top #0F2E64;
+    background: url(../assets/login.jpg) no-repeat center top #0F2E64;
     background-size: cover; 
+    height: 100%;
   }
   .counter:before {
     content:'';

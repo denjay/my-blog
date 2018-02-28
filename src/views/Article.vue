@@ -10,7 +10,7 @@
     <hr>
     <div class="comment">
       <p v-if="loggedIn">{{ username }}，留下你的评论吧！</p>
-      <p v-else>请<router-link to="/login">登录</router-link>再留言</p>
+      <p v-else>请<router-link to="/login">登录</router-link>后再留言：</p>
       <el-form>
         <el-form-item>
             <el-input type="textarea" rows="4" v-model="form.comment"></el-input>
@@ -20,6 +20,7 @@
         </el-form-item>
       </el-form>
       <br>
+      <b>网友留言：</b>
       <ul v-if="comments" v-bind="comments">
         <li v-for="comment in comments" v-bind:key="comment.index" class="shadow">
           <p>
@@ -63,8 +64,9 @@ export default {
       this.$axios.post("http://127.0.0.1:5000/api/1_0/articles/" + this.$route.params.article_id + "/comments", { comment_content: this.form.comment })
       .then(response => {
         if (response.status === 200) {
-          response.data["user_name"] = this.username
-          this.comments.push(response.data)
+          response.data["user_name"] = this.username;
+          this.comments.push(response.data);
+          this.form.comment = '';
           this.$message({
             message: '评论成功！',
             type: 'success'
@@ -102,6 +104,7 @@ export default {
     height:1px; 
     border:none; 
     border-top:1px dashed rgba(0, 102, 204, 0.459);
+    margin-bottom: 5px;
   }
   .content + hr {
     margin: 10px 0px;
@@ -110,6 +113,7 @@ export default {
     margin: 5px 0px;
   }
   .content {
+    font-size: 20px;
     min-height: 300px;
     text-align: left;
     text-indent: 2em;
@@ -118,6 +122,7 @@ export default {
     text-align: left;
   }
   .comment > p {
+    color: white;
     font-size: 14px;
   }
   .el-form-item {
@@ -131,14 +136,13 @@ export default {
     padding: 10px;
     margin: 10px 0px;
     border-radius: 8px;
-  }
-  li {
     background-color: #71D38C;
   }
   li:first {
     border: 1px solid black;
   }
   li span {
+    color: white;    
     font-size: 14px;
   }
   li span:nth-child(2) {

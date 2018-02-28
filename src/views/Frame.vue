@@ -45,3 +45,10 @@ export default {
     margin: auto;
   }
 </style>
+
+<style>
+  body {
+    background: url(../assets/background.jpg) no-repeat center top #B4DAEF;   
+    background-size: cover;    
+  }
+</style>

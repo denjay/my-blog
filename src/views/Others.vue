@@ -1,13 +1,14 @@
 <template>
   <div class="container shadow">
-      <p><b>热门文章</b><i class="el-icon-more right"></i></p>
+      <b>热门文章</b>
       <hr>
-      <div v-bind="articles">
-            <p v-for="article in articles" v-bind:key="article.index">
+      <ul v-bind="articles">
+            <li v-for="article in articles" v-bind:key="article.index">
+                <img src="../assets/hot.gif" alt="hot">
                 <router-link :to="'/articles/' + article.article_id">{{ article.article_title }}</router-link>
                 <!-- <a :href="'/#/articles/' + article.article_id"></a> -->
-            </p>
-      </div>
+            </li>
+      </ul>
   </div>
 </template>
 
@@ -32,23 +33,25 @@ export default {
         border-radius: 5px;
         max-width: 300px;
         margin: 0px 10px 10px 10px;
-        padding: 1px 10px;
+        padding: 5px 10px;
         background-color: #71D38C;
     }
-    p {
+    img {
+        position: relative;
+        top: 5px;
+        text-align: center;
+        width: 25px;
+    }
+    li {
         margin: 5px;
         text-align: left;
-    }
-    i {
-        font-size: 20px;
-        margin: 3px 10px;
     }
     .right {
         float: right;
     }
     hr { 
         border: none;
-        border-top: 1px solid rgba(0, 102, 204, 0.459);
-        margin-bottom: 0px 
+        border-top: 2px solid rgba(0, 102, 204, 0.459);
+        margin: 5px 0px; 
     }
 </style>

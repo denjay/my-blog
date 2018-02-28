@@ -62,6 +62,9 @@ export default {
     margin: 10px 0px;
     min-height: 50px;
   }
+  li i {
+    margin-right: 5px;
+  }
   li:hover {
     background: rgb(75, 206, 112);
   }
