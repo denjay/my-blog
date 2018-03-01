@@ -1,7 +1,7 @@
 <template>
   <div>
     <el-container>
-      <el-header><b>所有文章</b></el-header>
+      <carousel></carousel>
       <el-main>
         <ui v-bind="articles">
           <li class="shadow" v-for="article in articles" v-bind:key="article.index">
@@ -22,6 +22,7 @@
 </template>
 
 <script>
+import Carousel from './Carousel.vue'
 export default {
     data(){
         return {
@@ -30,6 +31,7 @@ export default {
             ]
         }
     },
+    components: { Carousel },
     mounted() {
         this.$axios.get("http://127.0.0.1:5000/api/1_0/articles")
         .then(response => {
@@ -74,18 +76,14 @@ export default {
 </style>
 
 <style>
-  .el-header, .el-footer {
+  .el-footer {
     border-radius: 5px;
-    margin: 0px 10px 0px 10px;
+    margin: 0px 10px 10px 10px;
     background-color: #B3C0D1;
     color: #333;
     text-align: center;
     line-height: 60px;
   }
-  .el-footer {
-    margin-bottom: 10px;
-  }
-
   .el-main {
     color: #333;
     text-align: center;

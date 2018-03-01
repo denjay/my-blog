@@ -50,7 +50,7 @@ export default {
         border-radius: 50%;
     }
     div {
-        margin-bottom: 10px;
+        margin-bottom: 25px;
     }
     .right {
         float: right;
